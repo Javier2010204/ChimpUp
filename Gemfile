@@ -35,6 +35,12 @@ gem 'devise'
 
 # para subida de imagenes
 gem 'paperclip'
+
+#jquery en rails
+gem 'jquery-rails'
+# disenio de material design lite
+gem 'bootstrap', '4.1.1'
+gem 'material-sass', '4.1.1'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

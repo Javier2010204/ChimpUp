@@ -1,0 +1,59 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <button data-target="#navdrawerPersistent" data-toggle="navdrawer" data-type="persistent" type="button" class="btn btn-flat">
+            <i class="material-icons">menu</i>
+        </button>
+        <%= link_to 'Chimp Up', root_path, class: 'navbar-brand'%>
+        <div aria-hidden="true" class="navdrawer navdrawer-persistent" id="navdrawerPersistent" tabindex="-1">
+            <div class="navdrawer-content">
+                <div class="navdrawer-header">
+                    <a href="">
+                        <i class="material-icons">close</i>
+                        <a href="" class="navbar-brand black-text no-decoration">Chimp Up</a>
+                    </a>
+                </div>
+                <% if user_signed_in? %>
+                    <p class="navdrawer-subheader">Mi empresa</p>
+                    <ul class="navdrawer-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#"><i class="material-icons mr-3">shopping_cart</i> Mis Pedidos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="material-icons mr-3">shopping_basket</i> Mis Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="material-icons mr-3">assignment</i>Inventario</a>
+                        </li>
+                    </ul>
+                    <div class="navdrawer-divider"></div>
+                    <p class="navdrawer-subheader">Configuracion</p>
+                    <ul class="navdrawer-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="material-icons mr-3">store</i> Mi Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="material-icons mr-3">help</i>Ayuda</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#"><i class="material-icons mr-3">power_settings_new</i>Cerrar Sesión</a>
+                        </li>
+                    </ul>
+                <% else %>
+                    <p class="navdrawer-subheader">Productos</p>
+                    <ul class="navdrawer-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#"><i class="material-icons mr-3">dashboard</i>Categorías</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="material-icons mr-3">store</i> Empresas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="material-icons mr-3">copyright</i> Sobre Nosotros</a>
+                        </li>
+                        <button type="button" class="btn btn-primary btn-sm">Iniciar Sesión</button>
+                    </ul>
+                <% end %>
+            </div>
+        </div>
+    </nav>
+</header>

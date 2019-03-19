@@ -37,8 +37,10 @@ ActiveRecord::Schema.define(version: 2019_03_19_025219) do
     t.datetime "remember_created_at"
     t.string "name"
     t.integer "permission_level"
+    t.integer "company_id", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

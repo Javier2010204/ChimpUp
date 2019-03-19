@@ -33,6 +33,8 @@ gem 'jbuilder', '~> 2.5'
 #para manejar los inicios de sesion
 gem 'devise'
 
+# para subida de imagenes
+gem 'paperclip'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

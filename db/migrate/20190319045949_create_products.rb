@@ -8,6 +8,9 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.string :state
       t.decimal :offer_price
       t.attachment :avatar
+      t.references :company, foreign_key: true
+      t.references :sub_category, foreign_key: true
+      t.references :brand, foreign_key: true
 
       t.timestamps
     end

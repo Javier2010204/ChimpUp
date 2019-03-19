@@ -1,16 +1,27 @@
 class ProductsController < ApplicationController
+    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :set_combo_values, only: [:new, :create, :update, :edit]
 
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    if user_signed_in?
+        @products = Product.own(current_user.company.id)
+        @company_id = current_user.company.id
+        render :admin_products
+    else
+        @products = Product.all
+    end
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
+    if user_signed_in? && current_user.company.id == @product.company.id && !params.has_key?(:client)
+        @attachment = Attachment.new
+        render :admin_product
+    end
   end
 
   # GET /products/new
@@ -25,7 +36,8 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
+    @company = current_user.company
+    @product = @company.products.new(product_params)
 
     respond_to do |format|
       if @product.save

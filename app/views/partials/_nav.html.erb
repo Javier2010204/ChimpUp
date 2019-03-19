@@ -4,7 +4,7 @@
             <i class="material-icons">menu</i>
         </button>
         <%= link_to 'Chimp Up', root_path, class: 'navbar-brand'%>
-        <div aria-hidden="true" class="navdrawer navdrawer-persistent" id="navdrawerPersistent" tabindex="-1">
+        <div aria-hidden="true" class="navdrawer navdrawer-persistent sobre-poner" id="navdrawerPersistent" tabindex="-1">
             <div class="navdrawer-content">
                 <div class="navdrawer-header">
                     <a href="">
@@ -50,7 +50,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#"><i class="material-icons mr-3">copyright</i> Sobre Nosotros</a>
                         </li>
-                        <button type="button" class="btn btn-primary btn-sm">Iniciar Sesión</button>
+                        <div class="top-space">
+                            <%= link_to 'Iniciar Sesión', new_user_session_path, class:'btn btn-primary' %>
+                        </div>
                     </ul>
                 <% end %>
             </div>

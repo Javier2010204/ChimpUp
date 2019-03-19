@@ -1,0 +1,47 @@
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Sale price:</strong>
+  <%= @product.sale_price %>
+</p>
+
+<p>
+  <strong>Cost price:</strong>
+  <%= @product.cost_price %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @product.state %>
+</p>
+
+<p>
+  <strong>Offer price:</strong>
+  <%= @product.offer_price %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
+
+<div>
+    <h2 class="">Imagenes</h2>
+        <ol>
+            <% @product.attachments.each do |attachment|%>
+                <li class="large-padding medium-font grey">
+                    <%= attachment.archivo_file_name%>
+                        <%= link_to attachment, method: :delete, :"data-confirm" => 'estas seguro de elimiar el archivo?', class: 'red-text' do %>
+                            <i class="material-icons">delete_forever</i>
+                        <%end%>
+                </li>
+            <%end%>
+        </ol>
+        <%= render 'attachments/form', product_id: @product.id %>
+</div>

@@ -2,7 +2,6 @@
   <% if product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
-
       <ul>
       <% product.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,37 +10,79 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+      <div class="floating-label">
+          <%= form.label 'Nombre del producto', for: 'NombreProducto' %>
+          <%= form.text_field :name, class: 'form-control', id: 'NombreProducto'%>
+          <small id="textoNombreProducto" class="form-text text-muted">Este campo es obligatorio</small>
+      </div>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="form-group">
+      <div class="floating-label">
+          <%= form.label 'Descripción del producto', for: 'DescripcionProducto' %>
+          <%= form.text_area :description, class: 'form-control', id: 'DescripcionProducto' %>
+          <small id="exampleTextfieldBox1Help" class="form-text text-muted">Este texto lo podran visualizar los clientes</small>
+      </div>
   </div>
 
-  <div class="field">
-    <%= form.label :sale_price %>
-    <%= form.text_field :sale_price %>
+  <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Q. </span>
+      </div>
+      <div class="floating-label">
+          <%= form.label 'Precio de venta', for: 'PrecioVentaProducto' %>
+          <%= form.number_field :sale_price, class: 'form-control', id: 'PrecioVentaProducto' %>
+      </div>
   </div>
 
-  <div class="field">
-    <%= form.label :cost_price %>
-    <%= form.text_field :cost_price %>
+  <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Q. </span>
+      </div>
+      <div class="floating-label">
+          <%= form.label 'Precio de compra', for: 'PrecioCompraProducto' %>
+          <%= form.number_field :cost_price, class: 'form-control', id: 'PrecioCompraProducto' %>
+      </div>
   </div>
 
-  <div class="field">
-    <%= form.label :state %>
-    <%= form.text_field :state %>
+  <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Q. </span>
+      </div>
+      <div class="floating-label">
+          <%= form.label 'Precio de oferta', for: 'PrecioOfertaProducto' %>
+          <%= form.text_field :offer_price, class: 'form-control', id: 'PrecioOfertaProducto' %>
+          <small id="exampleTextfieldBox1Help" class="form-text text-muted">campo opcional</small>
+      </div>
   </div>
 
-  <div class="field">
-    <%= form.label :offer_price %>
-    <%= form.text_field :offer_price %>
+  <div class="custom-control custom-switch">
+      <%= form.check_box :state, class: 'custom-control-input', id: 'customSwitch' %>
+      <span class="custom-control-track"></span>
+      <label class="custom-control-label" for="customSwitch">Producto en oferta</label>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="custom-file">
+      <%= form.file_field :avatar, class: 'custom-file-input', id: 'avatarField'%>
+      <label class="custom-file-label" for="avatarField">Seleccionar Archivo</label>
+  </div>
+
+  <div class="input-group mb-3">
+      <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Seleccionar marca</label>
+      </div>
+      <%= form.collection_select :brand_id, @brand,:id,:name, include_blank: false, class: 'custom-select', id:'inputGroupSelect01' %>
+  </div>
+
+  <div class="input-group mb-3">
+      <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Seleccionar tags</label>
+      </div>
+      <%= form.collection_select :sub_category_id, @sub_category,:id,:name, include_blank: false, class: 'custom-select', id:'inputGroupSelect01' %>
+  </div>
+
+  <div class="top-space">
+    <%= form.submit 'Guardar', class: 'btn btn-primary' %>
   </div>
 <% end %>

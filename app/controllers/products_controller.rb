@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_combo_values, only: [:new, :create, :update, :edit]
 
   # GET /products
   # GET /products.json
@@ -67,8 +68,13 @@ class ProductsController < ApplicationController
       @product = Product.find(params[:id])
     end
 
+    def set_combo_values
+        @brand = Brand.all.order(:name)
+        @sub_category = SubCategory.all.order(:name)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :description, :sale_price, :cost_price, :state, :offer_price)
+      params.require(:product).permit(:name, :description, :sale_price, :cost_price, :state, :offer_price, :avatar, :brand_id, :sub_category_id)
     end
 end

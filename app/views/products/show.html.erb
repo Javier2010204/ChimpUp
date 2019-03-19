@@ -29,8 +29,5 @@
   <strong>Offer price:</strong>
   <%= @product.offer_price %>
 </p>
-<%=link_to product_path(id: @product.id, client: true), class: 'mdl-button mdl-js-button white-text' do %>
-    <i class="material-icons margin-right">face</i><span>Ver como cliente</span>
-<%end%>
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

@@ -1,50 +1,55 @@
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+<div class="row center-xs">
+    <div class="col-xs-12 col-sm-10 col-lg-8">
+        <div class="box">
+            <div class="card">
+                <div class="">
+                    <%= image_tag @product.avatar.url(:medium), class:'card-img-top', style:'width:300px;height:300px;'%>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title"><%= @product.name %></h4>
+                    <p class="card-text">
+                        <%= @product.description %>
+                        <%= @product.sale_price %>
+                        <%= @product.sale_price %>
+                        <%= @product.state %>
+                        <%= @product.offer_price %>
+                    </p>
+                </div>
+                <div class="card-actions">
+                    <a class="btn btn-outline-primary" href="#">Eliminar</a>
+                    <a class="btn btn-outline-primary" href="#">Editar</a>
+                    <a class="btn btn-outline-primary" href="#">Ver como cliente</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row top-space center-xs">
+    <div class="col-xs-12 col-sm-10 col-lg-8">
+        <div class="box">
+            <div class="big-padding white">
+                <h2 class="">Imagenes</h2>
+                <ol class="list-group">
+                    <% @product.attachments.each do |attachment|%>
+                        <li class="top-space list-group-item list-group-item-primary">
+                            <%= attachment.archivo_file_name%>
+                                <%= link_to attachment, method: :delete, :"data-confirm" => 'estas seguro de elimiar el archivo?', class: 'red-text' do %>
+                                    <i class="material-icons">delete_forever</i>
+                                <%end%>
+                        </li>
+                    <%end%>
+                </ol>
+                <div class="top-space">
+                    <%= render 'attachments/form', product_id: @product.id %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
-
-<p>
-  <strong>Sale price:</strong>
-  <%= @product.sale_price %>
-</p>
-
-<p>
-  <strong>Cost price:</strong>
-  <%= @product.cost_price %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @product.state %>
-</p>
-
-<p>
-  <strong>Offer price:</strong>
-  <%= @product.offer_price %>
-</p>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
 <%=link_to product_path(id: @product.id, client: true), class: 'mdl-button mdl-js-button black-text' do %>
     <i class="material-icons margin-right">face</i><span>Ver como cliente</span>
 <%end%>
-
-<div>
-    <h2 class="">Imagenes</h2>
-        <ol>
-            <% @product.attachments.each do |attachment|%>
-                <li class="large-padding medium-font grey">
-                    <%= attachment.archivo_file_name%>
-                        <%= link_to attachment, method: :delete, :"data-confirm" => 'estas seguro de elimiar el archivo?', class: 'red-text' do %>
-                            <i class="material-icons">delete_forever</i>
-                        <%end%>
-                </li>
-            <%end%>
-        </ol>
-        <%= render 'attachments/form', product_id: @product.id %>
-</div>

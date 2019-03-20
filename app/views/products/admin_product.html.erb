@@ -8,17 +8,27 @@
                 <div class="card-body">
                     <h4 class="card-title"><%= @product.name %></h4>
                     <p class="card-text">
-                        <%= @product.description %>
-                        <%= @product.sale_price %>
-                        <%= @product.sale_price %>
-                        <%= @product.state %>
-                        <%= @product.offer_price %>
+                        <ul class="list-group text-justify">
+                            <li class="list-group-item list-group-item-light"><strong>Precio de venta: </strong><%= @product.sale_price %></li>
+                            <li class="list-group-item list-group-item-light"><strong>Precio de compra:</strong><%= @product.cost_price %></li>
+                            <li class="list-group-item list-group-item-light"><strong>Estado:</strong><%= @product.state %></li>
+                            <li class="list-group-item list-group-item-light"><strong>Precio de oferta: </strong><span><%= @product.offer_price %></span></li>
+                            <li class="list-group-item list-group-item-light"><strong>Descripción: </strong><span><%= @product.description %></span></li>
+                        </ul>
                     </p>
                 </div>
                 <div class="card-actions">
-                    <a class="btn btn-outline-primary" href="#">Eliminar</a>
-                    <a class="btn btn-outline-primary" href="#">Editar</a>
-                    <a class="btn btn-outline-primary" href="#">Ver como cliente</a>
+                    <%= link_to edit_product_path(@product), class: 'btn btn-outline-primary' do %>
+                        <i class="material-icons">create</i>Editar
+                    <%end%>
+
+                    <%=link_to product_path(id: @product.id, client: true), class: 'btn btn-outline-primary' do %>
+                        <i class="material-icons margin-right">face</i><span>Ver como cliente</span>
+                    <%end%>
+
+                    <%= link_to @product, method: :delete, :"data-confirm" => 'estas seguro de elimiar el archivo?', class: 'btn btn-outline-primary' do %>
+                        <i class="material-icons">clear</i>Eliminar
+                    <%end%>
                 </div>
             </div>
         </div>
@@ -34,7 +44,7 @@
                         <li class="top-space list-group-item list-group-item-primary">
                             <%= attachment.archivo_file_name%>
                                 <%= link_to attachment, method: :delete, :"data-confirm" => 'estas seguro de elimiar el archivo?', class: 'red-text' do %>
-                                    <i class="material-icons">delete_forever</i>
+                                    <i class="material-icons">clear</i>
                                 <%end%>
                         </li>
                     <%end%>
@@ -46,10 +56,3 @@
         </div>
     </div>
 </div>
-
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
-<%=link_to product_path(id: @product.id, client: true), class: 'mdl-button mdl-js-button black-text' do %>
-    <i class="material-icons margin-right">face</i><span>Ver como cliente</span>
-<%end%>

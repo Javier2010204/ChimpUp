@@ -1,32 +1,31 @@
-<div class="card">
-  <table class="table mb-0">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Username</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="row center-xs">
+    <div class="col-xs-12 col-sm-10 col-lg-8">
+        <div class="box">
+            <div class="card">
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Precio de venta</th>
+                            <th scope="col">Precio de compra</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <% @products.each do |product|%>
+                            <tr>
+                                <th scope="row"><%= product.id %></th>
+                                <td><%= link_to product.name, product%></td>
+                                <td><%= product.sale_price %></td>
+                                <td><%= product.cost_price %></td>
+                                <td><%= product.state %></td>
+                            </tr>
+                            <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

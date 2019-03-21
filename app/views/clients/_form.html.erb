@@ -11,27 +11,29 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+      <div class="floating-label">
+          <%= form.label 'Nombre del cliente', for: 'NombreProducto' %>
+          <%= form.text_field :name, class: 'form-control', id: 'NombreCliente'%>
+          <small id="textoNombreProducto" class="form-text text-muted">Este campo es obligatorio</small>
+      </div>
   </div>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
+  <div class="form-group">
+      <div class="floating-label">
+          <%= form.label 'Direccion', for: 'NombreProducto' %>
+          <%= form.text_field :address, class: 'form-control', id: 'NombreProducto'%>
+      </div>
   </div>
 
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.number_field :phone %>
+  <div class="form-group">
+      <div class="floating-label">
+          <%= form.label 'Telefono', for: 'NombreProducto' %>
+          <%= form.text_field :phone, class: 'form-control', id: 'NombreProducto'%>
+      </div>
   </div>
 
-  <div class="field">
-    <%= form.label :company_id %>
-    <%= form.text_field :company_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="top-space">
+    <%= form.submit 'Guardar', class: 'btn btn-primary' %>
   </div>
 <% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :clients
   resources :attachments, only: [:new, :create, :destroy]
   resources :sub_categories
   resources :brands

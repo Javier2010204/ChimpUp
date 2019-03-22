@@ -25,7 +25,11 @@
 								Dirección.
 								<span><%=@company.address%></span>
 							</p>
-							<%= link_to 'Ver Sucursales', root_path(), class: 'btn btn-primary'%>
+                            <% if current_user.nil? || @company != current_user.company %>
+                                <%= link_to 'Contactar', root_path(), class: 'btn btn-primary'%>
+                            <% else %>
+                                <%= link_to 'Editar Perfil', edit_company_path(@company), class: 'btn btn-primary'%>
+                            <% end %>
 						</div>
 					</div>
 				</div>

@@ -1,5 +1,7 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except:[:show]
+  before_action :authenticate_owner!, except:[:show]
 
   # GET /companies
   # GET /companies.json
@@ -63,6 +65,12 @@ class CompaniesController < ApplicationController
   end
 
   private
+
+    def authenticate_owner!
+      if @company != current_user.company
+        redirect_to root_path, notice: 'no estas autorizado para realizar esta accion', status: :unauthorized
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_company
       @company = Company.find(params[:id])

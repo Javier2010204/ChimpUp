@@ -22,3 +22,59 @@
 
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>
+
+<div class="row center-xs top-space">
+	<div class="col-xs-12 col-sm-8 col-lg-10">
+		<div class="box white">
+			<div class="card big-padding text-left cover relative" style="background-image: url(<%= @company.cover.url(:medium)%>)">
+				<div class="row center-xs">
+					<div class="col-xs-6 col-sm-5 no-padding">
+						<div class="box">
+							<div class="image-container">
+								<%=image_tag @company.logo.url(:thumb)%>
+								<h1 class="big-font"><%= @company.name%></h1>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs col-sm-1">
+
+					</div>
+					<div class="col-xs-5 col-sm-6">
+						<div class="box text-justify">
+							<p><%= @company.bio %></p>
+							<p>
+								Tel.
+								<span><%=@company.phone%></span>
+							</p>
+							<%= link_to 'Ver Sucursales', stores_path(), class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored'%>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row center-xs top-space">
+	<div class="col-xs-12 col-sm-8 col-lg-10">
+		<div class="box white card">
+			<h2 class="big-font">Productos</h2>
+			<div class="row top-space">
+				<% @products.each do |product|%>
+					<div class="col-xs-12 col-sm-4">
+						<div class="box">
+							<%= image_tag product.avatar.url(:medium)%>
+							<h2 class="medium-font"><%= product.name %></h2>
+							<p><%= product.price_sale %></p>
+							<p><%= product.description %></p>
+							<p><%= product.stock %></p>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>

@@ -35,17 +35,23 @@
 </div>
 <div class="row center-xs top-space">
 	<div class="col-xs-12 col-sm-8 col-lg-10">
-		<div class="box white card">
-			<h2 class="big-font">Productos</h2>
+		<div class="box top-space">
+			<h2 class="big-font pacifico-font">Productos</h2>
 			<div class="row top-space">
 				<% @products.each do |product|%>
 					<div class="col-xs-12 col-sm-4">
 						<div class="box">
-							<%= image_tag product.avatar.url(:medium)%>
-							<h2 class="medium-font"><%= product.name %></h2>
-							<p><%= product.sale_price %></p>
-							<p><%= product.description %></p>
-							<p><%= product.stock %></p>
+                            <div class="card top-space">
+                                <%= image_tag product.avatar.url(:medium), class: 'card-img-top'%>
+                                <div class="card-body">
+                                    <h4 class="card-title"><%= product.name.truncate(17) %></h4>
+                                    <h5 class="card-title">Q. <%= product.sale_price %></h5>
+                                    <p class="card-text"><%= product.description.truncate(50) %></p>
+                                </div>
+                                <div class="card-actions">
+                                    <%= link_to 'Ver Producto', product, class: 'btn btn-outline-primary'%>
+                                </div>
+                            </div>
 						</div>
 					</div>
 				<% end %>

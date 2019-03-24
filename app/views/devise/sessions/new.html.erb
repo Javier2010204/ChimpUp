@@ -1,8 +1,11 @@
 <div class="full-height row middle-xs white-text center-xs main-back no-margin">
     <div class="col-xs-10 col-sm-8 col-md-6 col-lg-4">
         <div class="box">
-            <div class="big-padding card">
-                <h2 class="black-text pacifico-font">Iniciar Sesión</h2>
+            <div class="big-padding card relative">
+                <div class="bg-primary white-text absolute card" style="position:relative; top:-50px; padding:10px;">
+                    <h2 class="no-margin big-font pacifico-font">Iniciar Sesión</h2>
+                    <p>Control total de tu negocio y comunicación con tus clientes</p>
+                </div>
                 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                   <div class="form-group floating-label">
                     <%= f.label :email %><br />

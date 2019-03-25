@@ -5,13 +5,25 @@ one:
   description: MyText
   sale_price: 9.99
   cost_price: 9.99
-  state: MyString
   offer_price: 9.99
+  state: MyString
+  stock: 1
+  min_stock: 1
+  offer: 1
+  company: one
+  sub_category: one
+  brand: one
 
 two:
   name: MyString
   description: MyText
   sale_price: 9.99
   cost_price: 9.99
-  state: MyString
   offer_price: 9.99
+  state: MyString
+  stock: 1
+  min_stock: 1
+  offer: 1
+  company: two
+  sub_category: two
+  brand: two

@@ -5,9 +5,9 @@ class CreateCompanies < ActiveRecord::Migration[5.2]
       t.string :address
       t.integer :phone
       t.text :description
+      t.string :facebook_link
       t.attachment :logo
       t.attachment :cover
-
       t.timestamps
     end
   end

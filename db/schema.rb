@@ -10,14 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_22_152214) do
+ActiveRecord::Schema.define(version: 2019_03_25_165125) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "attachments", force: :cascade do |t|
-    t.integer "product_id"
     t.string "archivo_file_name"
     t.string "archivo_content_type"
     t.bigint "archivo_file_size"
     t.datetime "archivo_updated_at"
+    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_attachments_on_product_id"
@@ -32,8 +35,9 @@ ActiveRecord::Schema.define(version: 2019_03_22_152214) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.string "icon"
+    t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,7 +46,7 @@ ActiveRecord::Schema.define(version: 2019_03_22_152214) do
     t.string "name"
     t.string "address"
     t.integer "phone"
-    t.integer "company_id"
+    t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_clients_on_company_id"
@@ -53,6 +57,7 @@ ActiveRecord::Schema.define(version: 2019_03_22_152214) do
     t.string "address"
     t.integer "phone"
     t.text "description"
+    t.string "facebook_link"
     t.string "logo_file_name"
     t.string "logo_content_type"
     t.bigint "logo_file_size"
@@ -63,27 +68,27 @@ ActiveRecord::Schema.define(version: 2019_03_22_152214) do
     t.datetime "cover_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "bio"
   end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.decimal "sale_price"
-    t.decimal "cost_price"
+    t.decimal "sale_price", precision: 10, scale: 2
+    t.decimal "cost_price", precision: 10, scale: 2
+    t.decimal "offer_price", precision: 10, scale: 2
     t.string "state"
-    t.decimal "offer_price"
+    t.integer "stock"
+    t.integer "min_stock"
+    t.integer "offer"
     t.string "avatar_file_name"
     t.string "avatar_content_type"
     t.bigint "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer "company_id"
-    t.integer "sub_category_id"
-    t.integer "brand_id"
+    t.bigint "company_id"
+    t.bigint "sub_category_id"
+    t.bigint "brand_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "stock"
-    t.integer "min_stock"
     t.index ["brand_id"], name: "index_products_on_brand_id"
     t.index ["company_id"], name: "index_products_on_company_id"
     t.index ["sub_category_id"], name: "index_products_on_sub_category_id"
@@ -91,8 +96,10 @@ ActiveRecord::Schema.define(version: 2019_03_22_152214) do
 
   create_table "sub_categories", force: :cascade do |t|
     t.string "name"
+    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_sub_categories_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -102,8 +109,7 @@ ActiveRecord::Schema.define(version: 2019_03_22_152214) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
-    t.integer "permission_level"
-    t.integer "company_id", default: 1
+    t.bigint "company_id", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_users_on_company_id"
@@ -111,4 +117,11 @@ ActiveRecord::Schema.define(version: 2019_03_22_152214) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "attachments", "products"
+  add_foreign_key "clients", "companies"
+  add_foreign_key "products", "brands"
+  add_foreign_key "products", "companies"
+  add_foreign_key "products", "sub_categories"
+  add_foreign_key "sub_categories", "categories"
+  add_foreign_key "users", "companies"
 end

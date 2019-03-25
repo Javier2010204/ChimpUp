@@ -13,7 +13,7 @@
 
   <body>
     <%= render 'partials/nav'%>
-    <p style="<%= 'display:none;' if notice.nil? && alert.nil? %>">
+    <p class="notice bg-secondary white-text text-center" style="<%= 'display:none;' if notice.nil? && alert.nil? %>">
         <%= notice %>
         <%= alert %>
     </p>

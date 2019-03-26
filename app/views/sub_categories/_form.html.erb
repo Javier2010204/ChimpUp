@@ -16,6 +16,13 @@
     <%= form.text_field :name %>
   </div>
 
+  <div class="input-group mb-3">
+      <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Categoria</label>
+      </div>
+      <%= form.collection_select :category_id, @category,:id,:name, include_blank: false, class: 'custom-select', id:'inputGroupSelect01' %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

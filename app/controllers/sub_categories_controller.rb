@@ -1,5 +1,6 @@
 class SubCategoriesController < ApplicationController
   before_action :set_sub_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_combo_values, only: [:new, :create, :edit, :update]
 
   # GET /sub_categories
   # GET /sub_categories.json
@@ -67,8 +68,12 @@ class SubCategoriesController < ApplicationController
       @sub_category = SubCategory.find(params[:id])
     end
 
+    def set_combo_values
+      @category = Category.all.order(:name)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def sub_category_params
-      params.require(:sub_category).permit(:name)
+      params.require(:sub_category).permit(:name, :category_id)
     end
 end

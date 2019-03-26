@@ -42,6 +42,8 @@ gem 'jquery-rails'
 # disenio de material design lite
 gem 'bootstrap', '4.1.1'
 gem 'material-sass', '4.1.1'
+gem 'bower-rails'
+gem 'annotate'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

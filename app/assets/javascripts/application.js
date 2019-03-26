@@ -14,6 +14,7 @@
 //= require jquery
 //= require popper
 //= require bootstrap
+//= require 'typeahead.js.js'
 //= require material
 //= require activestorage
 //= require turbolinks

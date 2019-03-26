@@ -11,17 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+      <div class="floating-label">
+          <%= form.label 'Nombre' %>
+          <%= form.text_field :name, class: 'form-control' %>
+      </div>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+  <div class="form-group">
+      <div class="floating_label">
+          <%= form.label 'Descripción' %>
+          <%= form.text_area :description, class: 'form-control' %>
+      </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="top-space">
+    <%= form.submit 'Guardar', class: 'btn btn-primary' %>
   </div>
 <% end %>

@@ -4,6 +4,14 @@ class Product < ApplicationRecord
   belongs_to :brand
 
   def product_description
-    #code
+    self.name + ((self.brand != nil) ? ' ' + self.brand.name : '')
+  end
+
+  def brand_name
+    if self.brand
+        self.brand.name
+    else
+        ''
+    end
   end
 end

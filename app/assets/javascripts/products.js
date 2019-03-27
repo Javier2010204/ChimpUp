@@ -29,7 +29,7 @@ $(document).ready(function() {
     $('#product_brand').typeahead('val', $('#product_brand_name').val() );
 
     $('#product_brand').on('typeahead:select', function(object, datum){
-        $('#item_brand_id').val(datum.id);
+        $('#product_brand_id').val(datum.id);
     });
 
     $('#product_brand').on('typeahead:change', function(event, data){
@@ -38,7 +38,7 @@ $(document).ready(function() {
     });
 
     $('#product_brand').on('blur', function() {
-        data = $('#item_brand').val();
+        data = $('#product_brand').val();
         $(this).trigger('typeahead:_propia', data)
         url = '/validate_suggested_brand';
         $.ajax({

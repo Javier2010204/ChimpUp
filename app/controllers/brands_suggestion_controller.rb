@@ -1,4 +1,4 @@
-class BrandSuggestionController < ApplicationController
+class BrandsSuggestionController < ApplicationController
 
     def index
         if params[:query].present?

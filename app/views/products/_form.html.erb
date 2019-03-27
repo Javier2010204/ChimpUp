@@ -70,13 +70,13 @@
 
   <div class="input-group mb-3">
       <div class="input-group-prepend">
-          <label class="input-group-text" for="inputGroupSelect01">Seleccionar marca</label>
+          <label class="input-group-text" for="inputGroupSelect01">Seleccionar tags</label>
       </div>
-      <%= form.collection_select :brand_id, @brand,:id,:name, include_blank: false, class: 'custom-select', id:'inputGroupSelect01' %>
+      <%= form.collection_select :sub_category_id, @sub_category,:id,:name, include_blank: false, class: 'custom-select', id:'inputGroupSelect01' %>
   </div>
 
-  <div class="form-group">
-      <div class="floating-label">
+  <div class="">
+      <div class="">
           <%= form.label :brand_id, "Marca" %>
           <%= form.text_field :brand, class: 'form-control'%>
       </div>
@@ -86,13 +86,6 @@
       <div style="display:none">
           <%= form.text_field :brand_name %>
       </div>
-  </div>
-
-  <div class="input-group mb-3">
-      <div class="input-group-prepend">
-          <label class="input-group-text" for="inputGroupSelect01">Seleccionar tags</label>
-      </div>
-      <%= form.collection_select :sub_category_id, @sub_category,:id,:name, include_blank: false, class: 'custom-select', id:'inputGroupSelect01' %>
   </div>
 
   <div class="top-space">

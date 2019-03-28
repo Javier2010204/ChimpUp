@@ -14,4 +14,8 @@
 
 class Attachment < ApplicationRecord
   belongs_to :product
+
+  has_attached_file :archivo, styles: {thumb: "100x100", medium: "600x600"}, default_url: "/images/:style/default-avatar.png"
+  validates_attachment_content_type :archivo, content_type: /\Aimage\/.*\Z/
+
 end

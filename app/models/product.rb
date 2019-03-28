@@ -26,24 +26,36 @@
 class Product < ApplicationRecord
     has_many :taggings
     has_many :sub_categories, through: :taggings
+    has_many :attachments
 
     belongs_to :company
     belongs_to :sub_category
     belongs_to :brand
 
-  def product_description
-    self.name + ((self.brand != nil) ? ' ' + self.brand.name : '')
-  end
+    has_attached_file :avatar, styles: {thumb: "100x100", medium: "300x300"}, default_url: "/images/:style/default-avatar.png"
+    validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
-  def brand_name
-    if self.brand
-        self.brand.name
-    else
-        ''
+    def product_description
+        self.name + ((self.brand != nil) ? ' ' + self.brand.name : '')
     end
-  end
 
-  def self.own(company)
-    Product.where(company_id: company)
-  end
+    def self.tagged_with(name)
+        SubCategory.find_by(name: name).products
+    end
+
+    def self.tag_counts
+
+    end
+
+    def brand_name
+        if self.brand
+            self.brand.name
+        else
+            ''
+        end
+    end
+
+    def self.own(company)
+        Product.where(company_id: company)
+    end
 end

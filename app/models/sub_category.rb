@@ -10,5 +10,8 @@
 #
 
 class SubCategory < ApplicationRecord
+    has_many :taggings
+    has_many :products, through: :taggings
     belongs_to :category
+
 end

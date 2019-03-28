@@ -24,9 +24,12 @@
 #
 
 class Product < ApplicationRecord
-  belongs_to :company
-  belongs_to :sub_category
-  belongs_to :brand
+    has_many :taggings
+    has_many :sub_categories, through: :taggings
+
+    belongs_to :company
+    belongs_to :sub_category
+    belongs_to :brand
 
   def product_description
     self.name + ((self.brand != nil) ? ' ' + self.brand.name : '')

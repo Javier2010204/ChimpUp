@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :sale_details
+  resources :sales
   resources :clients
   resources :attachments, only: [:new, :create, :destroy]
   resources :sub_categories

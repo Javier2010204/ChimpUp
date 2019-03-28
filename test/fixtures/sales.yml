@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: 1
+  date: 2019-03-28 13:11:04
+  state: 1
+  user: one
+  client: one
+  company: one
+
+two:
+  number: 1
+  date: 2019-03-28 13:11:04
+  state: 1
+  user: two
+  client: two
+  company: two

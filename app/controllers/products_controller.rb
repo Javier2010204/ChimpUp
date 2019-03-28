@@ -82,6 +82,7 @@ class ProductsController < ApplicationController
 
     def set_combo_values
         @brand = Brand.all.order(:name)
+        @sub_category = SubCategory.all.order(:name)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

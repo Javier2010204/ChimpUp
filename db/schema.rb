@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_28_054552) do
+ActiveRecord::Schema.define(version: 2019_03_28_191406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,32 @@ ActiveRecord::Schema.define(version: 2019_03_28_054552) do
     t.index ["sub_category_id"], name: "index_products_on_sub_category_id"
   end
 
+  create_table "sale_details", force: :cascade do |t|
+    t.bigint "sale_id"
+    t.bigint "product_id"
+    t.integer "number"
+    t.integer "qty"
+    t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_sale_details_on_product_id"
+    t.index ["sale_id"], name: "index_sale_details_on_sale_id"
+  end
+
+  create_table "sales", force: :cascade do |t|
+    t.integer "number"
+    t.datetime "date"
+    t.integer "state"
+    t.bigint "user_id"
+    t.bigint "client_id"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_sales_on_client_id"
+    t.index ["company_id"], name: "index_sales_on_company_id"
+    t.index ["user_id"], name: "index_sales_on_user_id"
+  end
+
   create_table "sub_categories", force: :cascade do |t|
     t.string "name"
     t.bigint "category_id"
@@ -132,6 +158,11 @@ ActiveRecord::Schema.define(version: 2019_03_28_054552) do
   add_foreign_key "products", "brands"
   add_foreign_key "products", "companies"
   add_foreign_key "products", "sub_categories"
+  add_foreign_key "sale_details", "products"
+  add_foreign_key "sale_details", "sales"
+  add_foreign_key "sales", "clients"
+  add_foreign_key "sales", "companies"
+  add_foreign_key "sales", "users"
   add_foreign_key "sub_categories", "categories"
   add_foreign_key "taggings", "products"
   add_foreign_key "taggings", "sub_categories"

@@ -4,7 +4,12 @@ class SalesController < ApplicationController
   # GET /sales
   # GET /sales.json
   def index
-    @sales = Sale.all
+      @company = current_user.company
+    unsaved_sales = Sale.where(state: "draft", company_id: current_user.company.id)
+    unsaved_sales.each do |sale|
+        sale.destroy
+    end
+    @sales = @company.sales
   end
 
   # GET /sales/1

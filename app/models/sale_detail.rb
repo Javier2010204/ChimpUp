@@ -13,6 +13,24 @@
 #
 
 class SaleDetail < ApplicationRecord
-  belongs_to :sale
-  belongs_to :product
+    belongs_to :sale
+    belongs_to :product
+
+    validates :product_id, presence: true
+    validates :qty, presence: true
+    validates :price, presence: true
+
+    accepts_nested_attributes_for :product
+
+    def subtotal
+        self.qty ? qty * unit_price : 0
+    end
+
+    def unit_price
+        if persisted?
+            price
+        else
+            product ? product.sale_price : 0
+        end
+    end
 end

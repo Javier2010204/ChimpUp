@@ -22,6 +22,8 @@ class SalesController < ApplicationController
     @sale = Sale.new
   end
 
+  #comementarios
+
   # GET /sales/1/edit
   def edit
   end

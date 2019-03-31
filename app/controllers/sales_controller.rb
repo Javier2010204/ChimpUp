@@ -29,6 +29,7 @@ class SalesController < ApplicationController
   # POST /sales
   # POST /sales.json
   def create
+    @company = current_user.company.id
     @sale = Sale.new(sale_params)
 
     respond_to do |format|

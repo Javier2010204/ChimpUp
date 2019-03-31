@@ -5,7 +5,7 @@ class SalesController < ApplicationController
   # GET /sales.json
   def index
       @company = current_user.company
-    unsaved_sales = Sale.where(state: "draft", company_id: current_user.company.id)
+      unsaved_sales = Sale.where(state: "draft", company_id: current_user.company.id)
     unsaved_sales.each do |sale|
         sale.destroy
     end

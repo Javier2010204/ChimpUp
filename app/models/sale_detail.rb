@@ -26,6 +26,7 @@ class SaleDetail < ApplicationRecord
         self.qty ? qty * unit_price : 0
     end
 
+    #precio por unidad
     def unit_price
         if persisted?
             price

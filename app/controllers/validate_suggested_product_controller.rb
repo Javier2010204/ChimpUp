@@ -1,0 +1,2 @@
+class ValidateSuggestedProductController < ApplicationController
+end

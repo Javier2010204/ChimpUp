@@ -1,0 +1,3 @@
+class ProductsSuggestionController < ApplicationController
+
+end

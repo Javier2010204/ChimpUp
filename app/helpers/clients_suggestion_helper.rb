@@ -1,0 +1,2 @@
+module ClientsSuggestionHelper
+end

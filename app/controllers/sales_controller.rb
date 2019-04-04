@@ -19,7 +19,11 @@ class SalesController < ApplicationController
 
   # GET /sales/new
   def new
-    @sale = Sale.new
+      last_sale = Sale.where(state: "confirmed", user: current_user, company: currrent_user.company).maximum('number')
+      number = (last_sale.nil?) ? last_sale + 1 : 1
+      @sale = Sale.create(date: Date::current, number: number, state: "draft", user: current_user, company: current_user.company)
+      @sale.sale_details.build
+      params[:sale_id] = @sale.id.to_s
   end
 
   #comementarios
@@ -31,18 +35,6 @@ class SalesController < ApplicationController
   # POST /sales
   # POST /sales.json
   def create
-    @company = current_user.company.id
-    @sale = Sale.new(sale_params)
-
-    respond_to do |format|
-      if @sale.save
-        format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
-        format.json { render :show, status: :created, location: @sale }
-      else
-        format.html { render :new }
-        format.json { render json: @sale.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /sales/1
@@ -77,6 +69,6 @@ class SalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
-      params.require(:sale).permit(:number, :date, :state, :user_id, :client_id, :company_id)
+      params.require(:sale).permit(:number, :date, :state, :user_id, :client_id, :company_id, sale_details_attributes: [:id, :sale_id, :product_id, :number, :qty, :price, :_destroy])
     end
 end

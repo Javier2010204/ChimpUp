@@ -10,7 +10,6 @@
 #  price      :decimal(, )
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  terminar mis cosas
 #
 
 class SaleDetail < ApplicationRecord

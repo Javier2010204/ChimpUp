@@ -23,7 +23,7 @@ class Sale < ApplicationRecord
     validates :number, presence: true
     validates :date, presence: true
 
-    accepts_nested_attributes_for :sale_details, reject_if: sale_detail_rejectable?, allow_destroy: true
+    accepts_nested_attributes_for :sale_details, reject_if: :sale_detail_rejectable?, allow_destroy: true
 
     enum state: [:draft, :confirmed]
 

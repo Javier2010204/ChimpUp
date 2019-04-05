@@ -1,5 +1,12 @@
-<h1>New Sale</h1>
-
-<%= render 'form', sale: @sale %>
-
-<%= link_to 'Back', sales_path %>
+<div class="row center-xs">
+    <div class="col-xs-10 col-sm-10 col-lg-8">
+        <div class="box">
+            <div class="big-padding white">
+                <h1 class="pacifico-font">Nuevo pedido</h1>
+                <div class="text-justify">
+                    <%= render 'form', sale: @sale %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

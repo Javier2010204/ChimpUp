@@ -19,9 +19,10 @@ class SalesController < ApplicationController
 
   # GET /sales/new
   def new
+      @client = Client.first
       last_sale = Sale.where(state: "confirmed", user: current_user, company: current_user.company).maximum('number')
       number =  (last_sale != nil) ? last_sale + 1 : 1
-      @sale = Sale.create(date: Date::current, number: number, state: "draft", user: current_user, company: current_user.company)
+      @sale = Sale.create(date: Date::current, number: number, state: "draft", user: current_user, company: current_user.company, client: @client)
       @sale.sale_details.build
       params[:sale_id] = @sale.id.to_s
   end

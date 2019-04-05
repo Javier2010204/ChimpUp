@@ -1,10 +1,10 @@
 <%= form_for :sale_details do |f| %>
-  <div class="nested-fields row">
+  <div class="row">
     <div class="col-xs-5">
       <div class="form-group">
-          <%= f.label :item_id, class: "sr-only" %>
-          <%= f.text_field :item, autofocus: true, placeholder: "Artículo", class: "form-control" %>
-          <%= f.hidden_field :item_id %>
+          <%= f.label :product_id, class: "sr-only" %>
+          <%= f.text_field :product, autofocus: true, placeholder: "Artículo", class: "form-control" %>
+          <%= f.hidden_field :product_id %>
       </div>
     </div>
     <div class="col-xs-2">

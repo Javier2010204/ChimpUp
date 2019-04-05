@@ -12,5 +12,7 @@
  *
  *= require common
  *= require colors
+ *= require 'bootstrap-modal-bs3patch'
+ *= require 'bootstrap-modal'
  *= require_self
  */

@@ -1,42 +1,37 @@
-<%= form_with(model: sale_detail, local: true) do |form| %>
-  <% if sale_detail.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(sale_detail.errors.count, "error") %> prohibited this sale_detail from being saved:</h2>
+<div class="modal-body">
+      <%= form_for :sale_details, url: sale_sale_details_url, method: :post, remote: true do |f| %>
+        <div class="row">
+          <div class="col-xs-5">
+            <div class="form-group">
+                <%= f.label :product_id, class: "sr-only" %>
+                <%= f.text_field :product, placeholder: "Artículo", class: "form-control", value: nil %>
+                <%= f.hidden_field :product_id %>
+                <%= hidden_field_tag :product_description  %>
+            </div>
+          </div>
+          <div class="col-xs-2">
+            <div class="form-group">
+                <%= f.label :qty, class: "sr-only" %>
+                <%= f.text_field :qty, placeholder: "Cant.", class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-xs-2">
+            <div class="form-group">
+                <%= f.label :price, class: "sr-only" %>
+                <%= f.text_field :price, placeholder: "Precio", class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-xs-2">
+            <div class="form-group">
+                <%= f.label :subtotal, class: "sr-only" %>
+                <%= f.text_field :subtotal, placeholder: "0", class: "form-control", disabled: true %>
+            </div>
+          </div>
+        </div>
 
-      <ul>
-      <% sale_detail.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <%= f.submit "Aceptar", class: "btn btn-primary" %>
       <% end %>
-      </ul>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :sale_id %>
-    <%= form.text_field :sale_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :product_id %>
-    <%= form.text_field :product_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :number %>
-    <%= form.number_field :number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :qty %>
-    <%= form.number_field :qty %>
-  </div>
-
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+    <div class="modal-footer">
+      <%= link_to "Cancelar", "#", class: "btn btn-danger", "data-dismiss": "modal" %>
+    </div>

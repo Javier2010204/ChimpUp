@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   get '/brands_suggestion', to: 'brands_suggestion#index'
   get '/validate_suggested_brand', to: 'validate_suggested_brand#index'
+  get '/clients_suggestion', to: 'clients_suggestion#index'
+  get '/validate_suggested_client', to: 'validate_suggested_client#index'
 
   authenticated :user do
     root to: "home#dashboard"

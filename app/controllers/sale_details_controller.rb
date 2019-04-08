@@ -7,6 +7,10 @@ class SaleDetailsController < ApplicationController
     @sale_details.product = Product.first
   end
 
+  def show
+    #code
+  end
+
   # POST /sale_details
   # POST /sale_details.json
   def create
@@ -25,7 +29,7 @@ class SaleDetailsController < ApplicationController
         @sale_detail.price = params[:sale_details][:price].to_f
         @sale_detail.save!
     else
-        sale_detail = SaleDetail.new(sale_details_params)
+        sale_detail = SaleDetail.new(sale_detail_params)
         if @sale.sale_details.last.nil?
             sale_detail.number = 1
         else
@@ -64,6 +68,6 @@ class SaleDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_detail_params
-      params.require(:sale_detail).permit(:id,:sale_id, :product_id, :product_description, :number, :qty, :price, :_destroy)
+      params.require(:sale_details).permit(:id,:sale_id, :product_id, :product_description, :number, :qty, :price, :_destroy)
     end
 end

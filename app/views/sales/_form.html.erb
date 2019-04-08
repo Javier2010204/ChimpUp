@@ -1,55 +1,77 @@
-<%= form_with(model: sale, local: true) do |form| %>
-    <% if sale.errors.any? %>
-        <div class="">
-            <h2><%= pluralize(sale.errors.count, "error(es)")%> evitaron que se pudiera guardar la venta</h2>
-            <ul>
-                <% sale.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-            </ul>
-        </div>
-    <% end %>
-
-    <div class="row">
-        <div class="col-xs-12 col-sm-5">
-            <div class="form-group">
+<div id="sale-form">
+    <div class="">
+        <%= form_with(model: sale, local: true) do |form| %>
+            <% if sale.errors.any? %>
                 <div class="">
-                    <%= form.label 'Numero'%>
-                    <%= form.text_field :number, class: 'form-control'%>
+                    <h2><%= pluralize(sale.errors.count, "error(es)")%> evitaron que se pudiera guardar la venta</h2>
+                    <ul>
+                        <% sale.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-5">
+                    <div class="form-group">
+                        <div class="">
+                            <%= form.label 'Numero'%>
+                            <%= form.text_field :number, class: 'form-control'%>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-1">
+
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <div class="">
+                            <%= form.label 'Fecha'%>
+                            <%= form.date_field :date, class: 'form-control'%>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-1">
 
-        </div>
-        <div class="col-xs-12 col-sm-6">
-            <div class="form-group">
-                <div class="">
-                    <%= form.label 'Fecha'%>
-                    <%= form.date_field :date, class: 'form-control'%>
+            <div class="row center-xs">
+                <div class="col-xs-12 col-sm-10">
+                    <div class="box">
+                        <div class="">
+                            <div class="">
+                                <%= form.label :client_id, "Cliente" %>
+                                <%= form.text_field :client, class: 'form-control'%>
+                            </div>
+                            <div style="display:none">
+                                <%= form.text_field :client_id %>
+                            </div>
+                            <div style="display:none">
+                                <%= form.text_field :client_name %>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div class="row center-xs top-space">
+                <div class="col-xs-12 col-sm-10">
+                    <div class="box">
+                        <div class="panel-body">
+                            <%= (@sale.sale_details.count > 0) ? render(partial: 'table', locals: {sale: @sale, show_actions: true}) : 'No hay detalles cargados'%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row top-space">
+                <div class="col-xs-12 text-center center-xs">
+                    <div class="box">
+                        <%= link_to "Nuevo detalle", new_sale_sale_detail_path(sale_id: @sale.id), remote: true, class: 'btn btn-secondary'%>
+                    </div>
+                </div>
+            </div>
+        <%end%>
+        <div class="modal fade" id="new-detail-modal" title="Modal">
         </div>
     </div>
-
-    <div class="row center-xs">
-        <div class="col-xs-12 col-sm-10">
-            <div class="box">
-                <div class="">
-                    <div class="">
-                        <%= form.label :client_id, "Cliente" %>
-                        <%= form.text_field :client, class: 'form-control'%>
-                    </div>
-                    <div style="display:none">
-                        <%= form.text_field :client_id %>
-                    </div>
-                    <div style="display:none">
-                        <%= form.text_field :client_name %>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-<%end%>
+</div>

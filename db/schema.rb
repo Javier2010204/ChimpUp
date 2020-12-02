@@ -12,10 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_03_28_191406) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-  enable_extension "unaccent"
-
   create_table "attachments", force: :cascade do |t|
     t.string "archivo_file_name"
     t.string "archivo_content_type"
@@ -153,18 +149,4 @@ ActiveRecord::Schema.define(version: 2019_03_28_191406) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "attachments", "products"
-  add_foreign_key "clients", "companies"
-  add_foreign_key "products", "brands"
-  add_foreign_key "products", "companies"
-  add_foreign_key "products", "sub_categories"
-  add_foreign_key "sale_details", "products"
-  add_foreign_key "sale_details", "sales"
-  add_foreign_key "sales", "clients"
-  add_foreign_key "sales", "companies"
-  add_foreign_key "sales", "users"
-  add_foreign_key "sub_categories", "categories"
-  add_foreign_key "taggings", "products"
-  add_foreign_key "taggings", "sub_categories"
-  add_foreign_key "users", "companies"
 end
